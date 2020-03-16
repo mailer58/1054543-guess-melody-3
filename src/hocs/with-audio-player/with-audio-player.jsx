@@ -35,5 +35,3 @@ export const withAudioPlayer = (Component) => {
 
   return WithAudioPlayer;
 };
-
-withAudioPlayer;
