@@ -1,6 +1,9 @@
-const AVATAR_URL = `https://api.adorable.io/avatars/128`;
+import React from "react";
+import renderer from "react-test-renderer";
+import App from "./app.jsx";
 
-export default [
+
+const questions = [
   {
     type: `genre`,
     genre: `rock`,
@@ -24,14 +27,25 @@ export default [
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
     },
     answers: [{
-      picture: `${AVATAR_URL}/${Math.random()}`,
+      picture: `https://api.adorable.io/avatars/128/1`,
       artist: `John Snow`,
     }, {
-      picture: `${AVATAR_URL}/${Math.random()}`,
+      picture: `https://api.adorable.io/avatars/128/2`,
       artist: `Jack Daniels`,
     }, {
-      picture: `${AVATAR_URL}/${Math.random()}`,
+      picture: `https://api.adorable.io/avatars/128/3`,
       artist: `Jim Beam`,
     }],
   },
 ];
+
+it(`Render App`, () => {
+  const tree = renderer
+    .create(<App
+      errorsCount={3}
+      questions={questions}
+    />)
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
